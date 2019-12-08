@@ -4,6 +4,8 @@ import Web from '../views/Web.vue'
 import Phone from '../views/Phone.vue'
 import Line from '../views/Line.vue'
 import Home from '../components/Home.vue'
+import Popular from '../components/Popular.vue'
+import Reward from '../components/Reward.vue'
 
 Vue.use(Router)
 
@@ -18,6 +20,16 @@ export default new Router({
                     path: '/',
                     name: 'home',
                     component: Home
+                },
+                {
+                    path: '/popular',
+                    name: 'popular',
+                    component: Popular
+                },
+                {
+                    path: '/reward',
+                    name: 'reward',
+                    component: Reward
                 },
             ],
         },
