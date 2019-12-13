@@ -1,10 +1,12 @@
 <template>
-  <div class="menu">
+  <div class="header">
     <button class="menu-button" @click="menuOn = !menuOn">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
     </button>
+    <h2 class="title">{{ title }}</h2>
+
     <aside class="menu-aside" v-if="menuOn === true" :style="{height:clientHeight + 'px'}">
       <div class="menu-title">
         <button class="menu-button" @click="menuOn = !menuOn">
@@ -15,12 +17,24 @@
         <h2>Menu</h2>
       </div>
       <ul class="menu-list">
-        <li class="menu-item"><router-link to="/">首頁</router-link></li>
-        <li class="menu-item"><router-link to="/reward">獎勵兌換</router-link></li>
-        <li class="menu-item"><router-link to="/record">查詢紀錄</router-link></li>
-        <li class="menu-item"><router-link to="/favorite">我的收藏</router-link></li>
-        <li class="menu-item"><router-link to="/setting">設定</router-link></li>
-        <li class="menu-item"><router-link to="/about">關於我們</router-link></li>
+        <li class="menu-item">
+          <router-link to="/">首頁</router-link>
+        </li>
+        <li class="menu-item">
+          <router-link to="/reward">獎勵兌換</router-link>
+        </li>
+        <li class="menu-item">
+          <router-link to="/record">查詢紀錄</router-link>
+        </li>
+        <li class="menu-item">
+          <router-link to="/favorite">我的收藏</router-link>
+        </li>
+        <li class="menu-item">
+          <router-link to="/setting">設定</router-link>
+        </li>
+        <li class="menu-item">
+          <router-link to="/about">關於我們</router-link>
+        </li>
       </ul>
     </aside>
   </div>
@@ -28,12 +42,12 @@
 
 <script>
 export default {
-  name: "menuComponent",
-  props: {},
+  name: "headerComponent",
+  props: ["title"],
   data() {
     return {
       menuOn: false,
-      clientHeight: document.querySelector('#app').offsetHeight,
+      clientHeight: document.querySelector("#app").offsetHeight
     };
   }
 };
@@ -41,6 +55,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #f4c026;
+  height: 65px;
+}
+
+.header .title {
+  font-size: 21px;
+  letter-spacing: 0.5em;
+}
+
 .menu {
   position: relative;
 }
@@ -68,7 +94,7 @@ export default {
   position: absolute;
   background-color: rgba(236, 102, 32, 0.8);
   width: 280px;
-  top: -17px;
+  top: 0;
 }
 .menu-title {
   height: 65px;
@@ -83,7 +109,7 @@ export default {
   letter-spacing: 0.5em;
 }
 
-.menu-list{
+.menu-list {
   position: relative;
   color: #fff;
   letter-spacing: 0.3em;
@@ -91,18 +117,18 @@ export default {
   padding: 30px;
 }
 
-.menu-list .menu-item{
+.menu-list .menu-item {
   position: relative;
   margin-left: 35px;
   margin-bottom: 18px;
 }
 
-.menu-list .menu-item::before{
+.menu-list .menu-item::before {
   position: absolute;
   content: "";
   width: 12px;
   height: 8px;
-  background-color: #E6C642;
+  background-color: #e6c642;
   color: transparent;
   border-radius: 2px;
   z-index: 2;

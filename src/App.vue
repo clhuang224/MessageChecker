@@ -66,4 +66,16 @@ button{
   border: 0;
   background-color: transparent;
 }
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+#app{
+	width: 100%;
+	max-width: 468px;
+	min-width: 375px;
+}
+
 </style>
