@@ -2,7 +2,7 @@
   <div class="popular">
     <Header :title="title" />
     <main class="main">
-    <img src="../assets/img/home-content.png" width="100%">
+    <img src="../assets/img/popular-content.png" width="100%">
     </main>
   </div>
 </template>

@@ -6,7 +6,7 @@
       <div class="line"></div>
     </button>
     <h2 class="title">{{ title }}</h2>
-
+    <div class="cover" v-if="menuOn === true" :style="{height:clientHeight + 'px'}"></div>
     <aside class="menu-aside" v-if="menuOn === true" :style="{height:clientHeight + 'px'}">
       <div class="menu-title">
         <button class="menu-button" @click="menuOn = !menuOn">
@@ -19,6 +19,9 @@
       <ul class="menu-list">
         <li class="menu-item">
           <router-link to="/">首頁</router-link>
+        </li>
+        <li class="menu-item">
+          <router-link to="/popular">熱門話題</router-link>
         </li>
         <li class="menu-item">
           <router-link to="/reward">獎勵兌換</router-link>
@@ -47,8 +50,14 @@ export default {
   data() {
     return {
       menuOn: false,
-      clientHeight: document.querySelector("#app").offsetHeight
+      clientHeight: document.body.clientHeight,
     };
+  },
+  created(){
+    if(window.innerHeight>this.clientHeight)
+    {
+      this.clientHeight = window.innerHeight;
+    }
   }
 };
 </script>
@@ -65,6 +74,16 @@ export default {
 .header .title {
   font-size: 21px;
   letter-spacing: 0.5em;
+}
+
+.cover{
+  background-color: rgba(0,0,0,0.2);
+  top: 0;
+  width: 100%;
+  min-width: 375px;
+  max-width: 468px;
+  position: absolute;
+  z-index: 1;
 }
 
 .menu {
@@ -92,6 +111,7 @@ export default {
 
 .menu-aside {
   position: absolute;
+  z-index: 2;
   background-color: rgba(236, 102, 32, 0.8);
   width: 280px;
   top: 0;
