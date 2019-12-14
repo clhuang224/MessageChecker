@@ -7,6 +7,10 @@ import Record from '../views/Record.vue'
 import About from '../views/About.vue'
 import Setting from '../views/Setting.vue'
 import Favorite from '../views/Favorite.vue'
+import RewardList from '../views/reward/List.vue'
+import RewardCoin from '../views/reward/Coin.vue'
+import RewardExchange from '../views/reward/Exchange.vue'
+import RewardRecord from '../views/reward/Record.vue'
 
 Vue.use(Router)
 
@@ -26,7 +30,29 @@ export default new Router({
         {
             path: '/reward',
             name: 'reward',
-            component: Reward
+            component: Reward,
+            children: [
+                {
+                    path: '/reward',
+                    name: 'reward',
+                    component: RewardList,
+                },
+                {
+                    path: '/reward/coin',
+                    name: 'reward/coin',
+                    component: RewardCoin,
+                },
+                {
+                    path: '/reward/exchange',
+                    name: 'reward/exchange',
+                    component: RewardExchange,
+                },
+                {
+                    path: '/reward/record',
+                    name: 'reward/record',
+                    component: RewardRecord,
+                }
+            ],
         },
         {
             path: '/record',

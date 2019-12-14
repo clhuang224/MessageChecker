@@ -2,7 +2,7 @@
   <div class="record">
     <Header :title="title" />
     <main class="main">
-    <img src="../assets/img/home-content.png" width="100%">
+      還沒好
     </main>
   </div>
 </template>
