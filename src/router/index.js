@@ -10,6 +10,7 @@ import Favorite from '../views/Favorite.vue'
 import RewardCoin from '../views/reward/Coin.vue'
 import RewardExchange from '../views/reward/Exchange.vue'
 import RewardRecord from '../views/reward/Record.vue'
+import RewardBarcode from '../views/reward/Barcode.vue'
 import BarList from '../components/BarList.vue'
 import DotList from '../components/DotList.vue'
 
@@ -68,6 +69,11 @@ export default new Router({
                     path: '/reward/record',
                     name: 'reward/record',
                     component: RewardRecord,
+                },
+                {
+                    path: '/reward/barcode',
+                    name: 'reward/barcode',
+                    component: RewardBarcode,
                 }
             ],
         },
@@ -126,7 +132,7 @@ export default new Router({
         {
             path: '/favorite',
             name: 'favorite',
-            component: Favorite
+            component: Favorite,
         },
 
     ]

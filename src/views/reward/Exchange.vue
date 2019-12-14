@@ -14,10 +14,8 @@
             <span class="amount">{{item.coinAmount}}</span>
           </div>
         </div>
-        <button class="exchange-button">
-          <span v-if="coinAmount[item.coinType]>=item.coinAmount">可兌換</span>
-          <span v-if="coinAmount[item.coinType]<item.coinAmount">再加油</span>
-        </button>
+        <button class="exchange-button" v-if="coinAmount[item.coinType]>=item.coinAmount"><router-link to="/reward/barcode">可兌換</router-link></button>
+        <div class="exchange-button" v-else>再加油</div>
       </li>
     </ul>
   </div>
@@ -99,7 +97,7 @@ export default {
   height: 55px;
 }
 
-.list .item .left .amount-group{
+.list .item .left .amount-group {
   margin-left: 15px;
   display: flex;
   justify-content: center;
@@ -119,6 +117,9 @@ export default {
   align-items: center;
 }
 .list .item .exchange-button {
+  width: 63px;
+  height: 30px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,22 +128,15 @@ export default {
   font-size: 13px;
   border-radius: 10px;
   margin-right: 15px;
-}
-.list .item .exchange-button span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  letter-spacing: 0.3em;
-  padding: 5px 4px;
+    letter-spacing: 0.3em;
   font-weight: normal;
-  margin-left: 0.3em;
+  padding-left: 0.3em;
+}
+.list .item.available {
+  background-color: rgba(239, 204, 61, 0.4);
 }
 
-.list .item.available{
-  background-color: rgba(239,204,61,0.4);
-}
-
-.list .item.available .exchange-button{
-  background-color: #E6C642;
+.list .item.available .exchange-button {
+  background-color: #e6c642;
 }
 </style>

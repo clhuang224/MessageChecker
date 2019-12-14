@@ -1,8 +1,13 @@
 <template>
-  <div class="bar-list">
+  <div class="dot-list">
     <h3 class="title">{{title}}</h3>
-    <ul class="list" v-for="(item,index) of list" :key="index">
-      <li class="item" :class="{emphasized:item.emphasized===true}">
+    <ul class="list">
+      <li
+        class="item"
+        v-for="(item,index) of list"
+        :key="index"
+        :class="{emphasized:item.emphasized===true}"
+      >
         <router-link :to="item.link">
           <span class="text">{{item.name}}</span>
           <button class="button" v-if="item.emphasized===false">{{buttonWord[0]}}</button>
@@ -25,7 +30,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.bar-list {
+.dot-list {
   padding: 0 25px;
 }
 .title {
@@ -57,12 +62,12 @@ export default {
   font-size: 20px;
 }
 
-.list .item a .text{
+.list .item a .text {
   position: relative;
   margin-left: 20px;
 }
 
-.list .item a .text:before{
+.list .item a .text:before {
   position: absolute;
   content: "";
   width: 12px;
@@ -73,22 +78,22 @@ export default {
   left: -20px;
 }
 
-.list .item a .button{
+.list .item a .button {
   padding: 0.4em;
   background-color: #e6c642;
   border-radius: 0.6em;
   letter-spacing: 0.2em;
   padding-left: 0.6em;
-  color:#FFF;
+  color: #fff;
   font-size: 13.72px;
 }
 
-.list .item.emphasized{
-  background-color:#EA8C47;
+.list .item.emphasized {
+  background-color: #ea8c47;
 }
 
 .list .item.emphasized .button,
-.list .item.emphasized .text:before{
-  background-color:#EC6620;
+.list .item.emphasized .text:before {
+  background-color: #ec6620;
 }
 </style>
