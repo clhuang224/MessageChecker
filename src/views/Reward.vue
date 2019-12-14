@@ -14,7 +14,7 @@ export default {
   components: {
     Header
   },
-  props: [],
+  props: ['list'],
   data() {
     return {
       title: "獎勵兌換",
@@ -45,7 +45,7 @@ export default {
   height: 100%;
   opacity: 0.1;
   z-index: -1;
-  background-image: url("../assets/img/reward_background.png");
+  background-image: url("../assets/img/background_coin.png");
   background-size: 100%;
   background-repeat: no-repeat;
 }

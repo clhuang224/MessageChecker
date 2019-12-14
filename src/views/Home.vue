@@ -11,7 +11,7 @@
       </div>
       <ul class="link-list">
         <li class="link-item">
-          <router-link to="/reward">我的<br>金幣</router-link>
+          <router-link to="/reward/coin">我的<br>金幣</router-link>
         </li>
         <li class="link-item">
           <router-link to="/record">查詢<br>紀錄</router-link>

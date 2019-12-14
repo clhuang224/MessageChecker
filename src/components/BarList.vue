@@ -1,5 +1,5 @@
 <template>
-  <div class="reward-list">
+  <div class="bar-list">
     <ul class="list">
       <li class="item" v-for="(item,index) of list" :key="index">
         <router-link :to="item.link">{{item.name}}</router-link>
@@ -11,24 +11,9 @@
 <script>
 export default {
   name: "listComponent",
-  props: [],
+  props: ["list"],
   data() {
-    return {
-      list: [
-        {
-          name: "我的金幣",
-          link: "/reward/coin"
-        },
-        {
-          name: "兌換獎品",
-          link: "/reward/exchange"
-        },
-        {
-          name: "兌換紀錄",
-          link: "/reward/record"
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>

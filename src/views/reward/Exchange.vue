@@ -48,24 +48,6 @@ export default {
           name: "7-11禮券",
           coinType: 0,
           coinAmount: 100
-        },
-        {
-          imgUrl: require("../../assets/img/reward_seven.png"),
-          name: "7-11禮券",
-          coinType: 0,
-          coinAmount: 100
-        },
-        {
-          imgUrl: require("../../assets/img/reward_seven.png"),
-          name: "7-11禮券",
-          coinType: 0,
-          coinAmount: 100
-        },
-        {
-          imgUrl: require("../../assets/img/reward_seven.png"),
-          name: "7-11禮券",
-          coinType: 0,
-          coinAmount: 100
         }
       ]
     };
@@ -91,7 +73,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  width: 320px;
+  width: 100%;
   background-color: rgba(186, 186, 186, 0.5);
 }
 

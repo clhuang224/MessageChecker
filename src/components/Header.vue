@@ -6,8 +6,12 @@
       <div class="line"></div>
     </button>
     <h2 class="title">{{ title }}</h2>
-    <div class="cover" v-if="menuOn === true" :style="{height:clientHeight + 'px'}"></div>
-    <aside class="menu-aside" v-if="menuOn === true" :style="{height:clientHeight + 'px'}">
+    <div class="cover" :class="{open: menuOn === true}" :style="{height:clientHeight + 'px'}"></div>
+    <aside
+      class="menu-aside"
+      :class="{open: menuOn === true}"
+      :style="{height:clientHeight + 'px'}"
+    >
       <div class="menu-title">
         <button class="menu-button" @click="menuOn = !menuOn">
           <div class="line"></div>
@@ -50,14 +54,23 @@ export default {
   data() {
     return {
       menuOn: false,
-      clientHeight: document.body.clientHeight,
+      clientHeight: document.body.clientHeight
     };
   },
-  created(){
-    if(window.innerHeight>this.clientHeight)
-    {
+  created() {
+    if (window.innerHeight > this.clientHeight) {
       this.clientHeight = window.innerHeight;
     }
+  },
+  mounted() {
+    let that = this;
+    document
+      .querySelector(".menu-list")
+      .addEventListener("click", function(event) {
+        if (event.target.nodeName == "A") {
+          that.menuOn = false;
+        }
+      });
   }
 };
 </script>
@@ -76,14 +89,19 @@ export default {
   letter-spacing: 0.5em;
 }
 
-.cover{
-  background-color: rgba(0,0,0,0.2);
+.cover {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.2);
   top: 0;
   width: 100%;
   min-width: 375px;
   max-width: 468px;
   position: absolute;
   z-index: 1;
+}
+
+.cover.open {
+  display: block;
 }
 
 .menu {
@@ -110,11 +128,15 @@ export default {
 }
 
 .menu-aside {
+  display: none;
   position: absolute;
   z-index: 2;
   background-color: rgba(236, 102, 32, 0.8);
   width: 280px;
   top: 0;
+}
+.menu-aside.open {
+  display: block;
 }
 .menu-title {
   height: 65px;
@@ -149,7 +171,6 @@ export default {
   width: 12px;
   height: 8px;
   background-color: #e6c642;
-  color: transparent;
   border-radius: 2px;
   z-index: 2;
   top: 6px;
