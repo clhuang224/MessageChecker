@@ -9,7 +9,7 @@
         :key="index"
       >
         <router-link :to="item.link">
-          <span class="text">{{item.name}}</span>
+          <span class="text">{{item.name | nameFormat}}</span>
           <button class="button">查看</button>
         </router-link>
       </li>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 import Header from "../components/Header.vue";
 export default {
   name: "favoriteComponent",
@@ -29,11 +30,29 @@ export default {
   data() {
     return {
       title: "我的收藏",
-      list: [
-        { name: "吃蘋果傷身體", link: "/article/1" },
-        { name: "寵物不能吃骨頭", link: "/article/2" }
-      ]
+      list: []
     };
+  },
+  filters:{
+    nameFormat:function(value){
+      if(value.length>8){
+        value = value.slice(0,7)+'..';
+      }
+      return value;
+    },
+  },
+  created(){
+    let articles = JSON.parse(localStorage.getItem('articles'));
+    for(let article of articles)
+    {
+      if(article.favorite === true)
+      {
+        this.list.push({
+          name: article.title,
+          link: `/article/${article.id}`,
+        });
+      }
+    }
   }
 };
 </script>

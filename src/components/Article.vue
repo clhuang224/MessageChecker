@@ -132,7 +132,7 @@ export default {
   border-radius: 8px;
 }
 .state .img {
-  width: 28px;
+ height: 28px;
 }
 .state .text {
   font-size: 22px;

@@ -6,12 +6,12 @@
         class="item"
         v-for="(item,index) of list"
         :key="index"
-        :class="{emphasized:item.emphasized===true}"
+        :class="{emphasized:item.read===false}"
       >
         <router-link :to="item.link">
           <span class="text">{{item.name | nameFormat}}</span>
-          <button class="button" v-if="item.emphasized===false">{{buttonWord[0]}}</button>
-          <button class="button" v-else>{{buttonWord[1]}}</button>
+          <button class="button" v-if="item.read===false" @click="readChecked(item)">已查證</button>
+          <button class="button" v-else>查看</button>
         </router-link>
       </li>
     </ul>
@@ -22,17 +22,65 @@
 export default {
   name: "dotListComponent",
   data() {
-    return {};
+    return {
+      title: "",
+      list: []
+    };
   },
-  filters:{
-    nameFormat:function(value){
-      if(value.length>8){
-        value = value.slice(0,7)+'..';
+  filters: {
+    nameFormat: function(value) {
+      if (value.length > 8) {
+        value = value.slice(0, 7) + "..";
       }
       return value;
+    }
+  },
+  props: ["mode"],
+  created() {
+    let articles = JSON.parse(localStorage.getItem("articles"));
+    switch (this.mode) {
+      case "checked":
+        this.title = "已查證";
+        for (let article of articles) {
+          if (article.record === true && article.state !== 'checking' && article.read === true) {
+            this.list.push({
+              id: article.id,
+              name: article.title,
+              link: `/article/${article.id}`
+            });
+          }
+        }
+        break;
+      case "checking":
+        this.title = "尚未查證";
+        for (let article of articles) {
+          if (article.record === true && article.state === 'checking'||
+            article.state !== 'checking' && article.read === false) {
+            this.list.push({
+              id: article.id,
+              name: article.title,
+              link: `/article/${article.id}`,
+              read: article.read,
+            });
+          }
+        }
+        break;
+    }
+  },
+  methods:{
+    readChecked:function(item){
+      let articles = JSON.parse(localStorage.getItem("articles"));
+      for (let i=0;i<articles.length;i++)
+      {
+        if(articles[i].id === item.id)
+        {
+          articles[i].read = true;
+          break;
+        }
+      }
+      localStorage.setItem("articles",JSON.stringify(articles));
     },
   },
-  props: ["title", "list", "buttonWord"],
 };
 </script>
 

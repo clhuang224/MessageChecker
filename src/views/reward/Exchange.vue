@@ -14,7 +14,13 @@
             <span class="amount">{{item.coinAmount}}</span>
           </div>
         </div>
-        <button class="exchange-button" v-if="coinAmount[item.coinType]>=item.coinAmount"><router-link to="/reward/barcode">可兌換</router-link></button>
+        <button
+          class="exchange-button"
+          @click="exchange(item)"
+          v-if="coinAmount[item.coinType]>=item.coinAmount"
+        >
+          <router-link to="/reward/barcode">可兌換</router-link>
+        </button>
         <div class="exchange-button" v-else>再加油</div>
       </li>
     </ul>
@@ -23,25 +29,28 @@
 
 <script>
 export default {
-  name: "coinComponent",
+  name: "exchangeComponent",
   props: [],
   data() {
     return {
-      coinAmount: [30, 0, 0],
+      coinAmount: JSON.parse(localStorage.getItem("coinAmount")),
       productList: [
         {
+          id: 0,
           imgUrl: require("../../assets/img/reward_coffee.png"),
           name: "咖啡",
           coinType: 0,
           coinAmount: 30
         },
         {
+          id: 1,
           imgUrl: require("../../assets/img/reward_coke.png"),
           name: "可樂",
           coinType: 1,
           coinAmount: 30
         },
         {
+          id: 2,
           imgUrl: require("../../assets/img/reward_seven.png"),
           name: "7-11禮券",
           coinType: 0,
@@ -49,6 +58,26 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    exchange(item) {
+      this.coinAmount[item.coinType] -= item.coinAmount;
+      let message = `兌換成功！已以${item.coinAmount}`;
+      switch (item.coinType) {
+        case 0:
+          message += "金幣";
+          break;
+        case 1:
+          message += "銀幣";
+          break;
+        case 2:
+          message += "銅幣";
+          break;
+      }
+      message += `兌換${item.name} x 1。`;
+      localStorage.setItem('coinAmount',JSON.stringify(this.coinAmount));
+      alert(message);
+    }
   }
 };
 </script>
@@ -128,7 +157,7 @@ export default {
   font-size: 13px;
   border-radius: 10px;
   margin-right: 15px;
-    letter-spacing: 0.3em;
+  letter-spacing: 0.3em;
   font-weight: normal;
   padding-left: 0.3em;
 }

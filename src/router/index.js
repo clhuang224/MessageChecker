@@ -14,6 +14,7 @@ import RewardBarcode from '../views/reward/Barcode.vue'
 import BarList from '../components/BarList.vue'
 import DotList from '../components/DotList.vue'
 import Article from '../components/Article.vue'
+import Reset from '../views/Reset.vue'
 
 Vue.use(Router)
 
@@ -97,20 +98,7 @@ export default new Router({
                     name: 'record/article',
                     component: DotList,
                     props: {
-                        title: '已查證',
-                        list: [
-                            {
-                                name: "吃蘋果傷身體",
-                                link: "/article/0",
-                                emphasized: false
-                            },
-                            {
-                                name: "寵物不吃骨頭",
-                                link: "/article/2",
-                                emphasized: false
-                            },
-                        ],
-                        buttonWord: ['查看', '已查證']
+                        mode: 'checked'
                     }
                 },
                 {
@@ -118,12 +106,7 @@ export default new Router({
                     name: 'record/checking',
                     component: DotList,
                     props: {
-                        title: '尚未查證',
-                        list: [
-                            { name: "紅白蘿蔔不能一起吃", link: "/article/1", emphasized: true },
-                            { name: "明年2月所得稅增加20%", link: "/article/3", emphasized: false }
-                        ],
-                        buttonWord: ['查看', '已查證']
+                        mode: 'checking'
                     }
                 },
             ],
@@ -148,6 +131,10 @@ export default new Router({
             name: 'favorite',
             component: Favorite,
         },
-
+        {
+            path: '/reset',
+            name: 'reset',
+            component: Reset,
+        },
     ]
 })

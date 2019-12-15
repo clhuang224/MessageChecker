@@ -27,7 +27,7 @@ export default {
   props: [],
   data() {
     return {
-      coinAmount: [30, 10, 0]
+      coinAmount: JSON.parse(localStorage.getItem('coinAmount')),
     };
   }
 };
