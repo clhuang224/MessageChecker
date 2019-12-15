@@ -80,7 +80,15 @@ export default {
         this.shareLink +='尚待查證：'
         break;
     }
-    this.shareLink+=`${this.article.title}%0D%0A${window.location.href}%0D%0A${this.article.answer}`;
+    this.shareLink+=this.article.title;
+    if(this.article.answer.length>50)
+    {
+      this.shareLink += ('%0D%0A'+this.article.answer.slice(0,50)+'...');
+    }
+    else if(this.article.answer.length!=0){
+      this.shareLink += '%0D%0A'+this.article.answer;
+    }
+    this.shareLink += `%0D%0A${window.location.href}`;
   },
   methods:{
     historyBack: function(){
