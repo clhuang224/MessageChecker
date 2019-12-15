@@ -39,6 +39,7 @@
       </section>
       <div class="buttons">
         <a :href="shareLink"><button class="share-button">分享</button></a>
+        <button class="favorite-button" v-if="article.favorite === false" @click="addFavorite()">收藏</button>
         <button class="return-button" @click="historyBack()">返回</button>
       </div>
     </main>
@@ -85,6 +86,20 @@ export default {
     historyBack: function(){
       history.go(-1);
     },
+    addFavorite: function(){
+      this.article.favorite = true;
+      let articles = JSON.parse(localStorage.getItem("articles"));
+      for (let i=0;i<articles.length;i++)
+      {
+        if(articles[i].id === this.article.id)
+        {
+          articles[i].favorite = true;
+          break;
+        }
+      }
+      localStorage.setItem("articles",JSON.stringify(articles));
+      alert(`已將「${this.article.title}」加入收藏。`)
+    }
   },
 };
 </script>
