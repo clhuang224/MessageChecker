@@ -9,7 +9,7 @@
         :class="{emphasized:item.emphasized===true}"
       >
         <router-link :to="item.link">
-          <span class="text">{{item.name}}</span>
+          <span class="text">{{item.name | nameFormat}}</span>
           <button class="button" v-if="item.emphasized===false">{{buttonWord[0]}}</button>
           <button class="button" v-else>{{buttonWord[1]}}</button>
         </router-link>
@@ -21,10 +21,18 @@
 <script>
 export default {
   name: "dotListComponent",
-  props: ["title", "list", "buttonWord"],
   data() {
     return {};
-  }
+  },
+  filters:{
+    nameFormat:function(value){
+      if(value.length>8){
+        value = value.slice(0,7)+'..';
+      }
+      return value;
+    },
+  },
+  props: ["title", "list", "buttonWord"],
 };
 </script>
 

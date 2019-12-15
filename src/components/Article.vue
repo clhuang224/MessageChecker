@@ -58,15 +58,28 @@ export default {
       article: JSON.parse(localStorage.getItem("articles"))[
         this.$route.params.id
       ],
-      clientHeight: document.body.clientHeight - 65,
+      clientHeight: document.body.clientHeight +30,
       shareLink: ``,
     };
   },
   created() {
-    if (this.clientHeight < window.innerHeight - 65) {
-      this.clientHeight = window.innerHeight - 65;
+    if (this.clientHeight < window.innerHeight+30) {
+      this.clientHeight = window.innerHeight+30;
     }
-    this.shareLink = `http://line.me/R/msg/text/?【名偵探貓頭鷹】${this.article.title}%0D%0A${window.location.href}`;
+    this.shareLink = `http://line.me/R/msg/text/?【名偵探貓頭鷹：辨識訊息真偽的好夥伴！】%0D%0A`
+    switch(this.article.state)
+    {
+      case'true':
+        this.shareLink +='正確資訊：'
+        break;
+      case'false':
+        this.shareLink +='錯誤資訊：'
+        break;
+      case'checking':
+        this.shareLink +='尚待查證：'
+        break;
+    }
+    this.shareLink+=`${this.article.title}%0D%0A${window.location.href}%0D%0A${this.article.answer}`;
   },
   methods:{
     historyBack: function(){

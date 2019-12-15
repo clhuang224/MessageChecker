@@ -2,7 +2,7 @@
   <div class="bar-list">
     <ul class="list">
       <li class="item" v-for="(item,index) of list" :key="index">
-        <router-link :to="item.link">{{item.name}}</router-link>
+        <router-link :to="item.link">{{item.name | nameFormat}}</router-link>
       </li>
     </ul>
   </div>
@@ -14,7 +14,15 @@ export default {
   props: ["list"],
   data() {
     return {};
-  }
+  },
+  filters:{
+    nameFormat:function(value){
+      if(value.length>8){
+        value = value.slice(0,7)+'..';
+      }
+      return value;
+    },
+  },
 };
 </script>
 
