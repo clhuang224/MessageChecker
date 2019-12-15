@@ -30,8 +30,8 @@ export default {
     return {
       title: "我的收藏",
       list: [
-        { name: "娛樂圈10大美人", link: "" },
-        { name: "吃蘋果傷身體", link: "" }
+        { name: "吃蘋果傷身體", link: "/article/1" },
+        { name: "寵物不能吃骨頭", link: "/article/2" }
       ]
     };
   }

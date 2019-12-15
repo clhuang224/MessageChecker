@@ -13,6 +13,7 @@ import RewardRecord from '../views/reward/Record.vue'
 import RewardBarcode from '../views/reward/Barcode.vue'
 import BarList from '../components/BarList.vue'
 import DotList from '../components/DotList.vue'
+import Article from '../components/Article.vue'
 
 Vue.use(Router)
 
@@ -87,21 +88,29 @@ export default new Router({
                     name: 'record',
                     component: BarList,
                     props: {
-                        list: [{ name: "已查證", link: "/record/checked" },
+                        list: [{ name: "已查證", link: "/record/article" },
                         { name: "未查證", link: "/record/checking" }]
                     }
                 },
                 {
-                    path: '/record/checked',
-                    name: 'record/checked',
+                    path: '/record/article',
+                    name: 'record/article',
                     component: DotList,
                     props: {
                         title: '已查證',
                         list: [
-                            { name: "娛樂圈10大美人", link: "", emphasized: false },
-                            { name: "吃蘋果傷身體", link: "", emphasized: false  }
+                            {
+                                name: "吃蘋果傷身體",
+                                link: "/article/0",
+                                emphasized: false
+                            },
+                            {
+                                name: "寵物不吃骨頭",
+                                link: "/article/2",
+                                emphasized: false
+                            },
                         ],
-                        buttonWord:['查看','已查證']
+                        buttonWord: ['查看', '已查證']
                     }
                 },
                 {
@@ -111,13 +120,18 @@ export default new Router({
                     props: {
                         title: '尚未查證',
                         list: [
-                            { name: "娛樂圈10大美人", link: "", emphasized: true },
-                            { name: "吃蘋果傷身體", link: "", emphasized: false  }
+                            { name: "紅白蘿蔔不能一起吃", link: "/article/1", emphasized: true },
+                            { name: "明年2月所得稅增加20%", link: "/article/3", emphasized: false }
                         ],
-                        buttonWord:['查看','已查證']
+                        buttonWord: ['查看', '已查證']
                     }
                 },
             ],
+        },
+        {
+            path: '/article/:id',
+            name: 'article',
+            component: Article,
         },
         {
             path: '/setting',
