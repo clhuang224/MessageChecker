@@ -1,3 +1,7 @@
+網頁原型：https://clhuang224.github.io/MessageChecker
+
+Line Bot 原型：https://lin.ee/zxzW7ej
+
 # message_checker
 
 ## Project setup
