@@ -1,8 +1,13 @@
-網頁原型：https://clhuang224.github.io/MessageChecker
+# 名偵探貓頭鷹
 
-Line Bot 原型：https://lin.ee/zxzW7ej
+此專案為「說服科技與互動設計工作坊」課程的作品。
 
-# message_checker
+## 原型網址
+
+網頁：https://clhuang224.github.io/MessageChecker
+
+Line Bot：https://lin.ee/zxzW7ej
+
 
 ## Project setup
 ```
